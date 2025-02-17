@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "rag-on-gcp"
+version = "0.1.0"
+description = ""
+authors = ["Massyl GH"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "!=3.9.7,>=3.9,<4.0"
+streamlit = "^1.42.0"
+datetime = "^5.5"
+langchain = "^0.3.18"
+python-dotenv = "^1.0.1"
+firebase-admin = "^6.6.0"
+google-cloud = "^0.34.0"
+google-cloud-aiplatform = "^1.80.0"
+langchain-community = "^0.3.17"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
