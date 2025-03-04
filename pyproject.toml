@@ -15,6 +15,14 @@ firebase-admin = "^6.6.0"
 google-cloud = "^0.34.0"
 google-cloud-aiplatform = "^1.80.0"
 langchain-community = "^0.3.17"
+google-api-python-client = "^2.161.0"
+google-auth-httplib2 = "^0.2.0"
+google-auth-oauthlib = "^1.2.1"
+ipykernel = "^6.29.5"
+langchain-google-community = "^2.0.4"
+langchain-googledrive = "^0.3.35"
+unstructured = "^0.16.23"
+langchain-google-vertexai = "^2.0.14"
 
 
 [build-system]

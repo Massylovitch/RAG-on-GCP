@@ -1,6 +1,6 @@
-from langchain.embeddings.vertexai import VertexAIEmbeddings
-from config import PROJECT_ID, REGION
+from langchain_google_vertexai import VertexAIEmbeddings
+
 
 def get_embedding_model():
-    embeddings = VertexAIEmbeddings(project_id=PROJECT_ID, location=REGION)
+    embeddings = VertexAIEmbeddings(model_name="text-embedding-004")
     return embeddings

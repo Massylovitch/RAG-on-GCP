@@ -4,8 +4,8 @@ from typing import List, Dict, Any, Union
 from firebase_admin import firestore
 from google.cloud import aiplatform
 from langchain.schema import BaseRetriever, Document
-from langchain.embeddings.vertexai import VertexAIEmbeddings
-from filters import convert_filters_datetime_to_timestamp, get_namespace_from_filters
+from langchain_google_vertexai import VertexAIEmbeddings
+from .filters import convert_filters_datetime_to_timestamp, get_namespace_from_filters
 from config import (
     PROJECT_ID,
     FIRESTORE_DATABASE_NAME,
@@ -23,6 +23,7 @@ firestore_db = firestore.Client(
     database=FIRESTORE_DATABASE_NAME
 )
 
+
 class FirestoreRetriever(BaseRetriever):
     index_endpoint_name: str
     deployed_index_id: str
@@ -36,7 +37,7 @@ class FirestoreRetriever(BaseRetriever):
     def _similarity_search(self, query_emb):
         my_index_endpoint = aiplatform.MatchingEngineIndexEndpoint(
             index_endpoint_name=self.index_endpoint_name,
-            location=REGION
+            location=REGION,
         )
 
         similar_docs = my_index_endpoint.find_neighbors(
@@ -48,7 +49,7 @@ class FirestoreRetriever(BaseRetriever):
         )
 
         return similar_docs
-    
+
     def _get_relevant_documents(
         self, query, *, run_manager
     ):
@@ -69,7 +70,7 @@ class FirestoreRetriever(BaseRetriever):
             if doc.exists:
                 relevant_docs.append(self._firestore_doc_to_langchain_doc(doc))
         return relevant_docs
-    
+
     def _firestore_doc_to_langchain_doc(self, fs_doc):
         lc_doc = Document(
             page_content=fs_doc.get("content"),
@@ -79,7 +80,6 @@ class FirestoreRetriever(BaseRetriever):
             }
         )
         return lc_doc
-    
 
 
 def get_retriever(embeddings, filters):

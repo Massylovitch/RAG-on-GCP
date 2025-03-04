@@ -1,10 +1,10 @@
 from .embeddings import get_embedding_model
 from langchain.chains import RetrievalQA
 
-from llms import get_llm
-from prompt import get_prompt
-from firestore import get_retriever
-from embeddings import get_embedding_model
+from .llms import get_llm
+from .prompt import get_prompt
+from .firestore import get_retriever
+from .embeddings import get_embedding_model
 
 
 def get_chain(filters, streaming, streaming_handler):
